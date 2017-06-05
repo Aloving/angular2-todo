@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 
-const todos = [
+class Todo {
+	title: string;
+	completed: boolean;
+}
+
+const todos: Todo[]  = [
 	{
 		title: 'Изучить JavaScript',
 		completed: true
@@ -24,17 +29,20 @@ const todos = [
 })
 export class AppComponent{
 	title = 'Angular TODO';
-	todos = todos;
+	todos: Todo[] = todos;
 
-	toggle(todo: any){
+	toggle(todo: Todo){
 		todo.completed = !todo.completed;
 	}
 
-	delete(todo: any){
+	delete(todo: Todo){
 		let index = this.todos.indexOf(todo);
 
 		if(index > -1){
 			todos.splice(index, 1);
+		}else{
+			return;
 		}
+
 	}
 }
